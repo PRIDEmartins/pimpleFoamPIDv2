@@ -49,24 +49,24 @@ Description
 
 int main(int argc, char *argv[])
 {
+    // Fixed based on OF v6.0:
     #include "postProcess.H"
 
-    #include "setRootCase.H"
+    #include "setRootCaseLists.H"
     #include "createTime.H"
-    #include "createMesh.H"
-    #include "createControl.H"
-    #include "createTimeControls.H"
-    #include "createFields.H"
-	  #include "initializeEp.H" // (v1.0)
-    #include "createFvOptions.H"
+    #include "createDynamicFvMesh.H"
     #include "initContinuityErrs.H"
+    #include "createDyMControls.H"
+    #include "createFields.H"
+    #include "initializeEp.H" // Initialize custom variables
+    #include "createUfIfPresent.H"
 
     turbulence->validate();
 
-    if (!LTS) // (v2.0)
+    if (!LTS)
     {
-      #include "CourantNo.H"
-      #include "setInitialDeltaT.H"
+        #include "CourantNo.H"
+        #include "setInitialDeltaT.H"
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

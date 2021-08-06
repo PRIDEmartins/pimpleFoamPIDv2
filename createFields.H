@@ -1,25 +1,4 @@
-#include <vector>
-
-IOdictionary transportProperties
-(
-    IOobject
-    (
-        "transportProperties",
-        runTime.constant(),
-        mesh,
-        IOobject::MUST_READ_IF_MODIFIED,
-        IOobject::NO_WRITE
-    )
-);
-
-dimensionedScalar rho
-(
-    "rho",
-    dimDensity,
-    transportProperties.lookup("rho")
-);
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+#include "createRDeltaT.H"
 
 Info<< "Reading field p\n" << endl;
 volScalarField p
@@ -48,6 +27,9 @@ volVectorField U
     ),
     mesh
 );
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
 
 Info << "Reading field pidEp\n" << endl;
 volScalarField pidEp
@@ -209,12 +191,13 @@ scalar pRefValue = 0.0;
 setRefCell(p, pimple.dict(), pRefCell, pRefValue);
 mesh.setFluxRequired(p.name());
 
-
+// Copied from OFv6.0:
 singlePhaseTransportModel laminarTransport(U, phi);
 
-autoPtr<incompressible::turbulenceModel> turbulence
+autoPtr<incompressible::momentumTransportModel> turbulence
 (
-    incompressible::turbulenceModel::New(U, phi, laminarTransport)
+    incompressible::momentumTransportModel::New(U, phi, laminarTransport)
 );
 
 #include "createMRF.H"
+#include "createFvOptions.H"
