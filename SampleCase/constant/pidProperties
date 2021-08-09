@@ -1,0 +1,26 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      dataAssimProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+pidKp			[0 0 0 0 0 0 0] 1e8;
+
+pidTi			[0 0 1 0 0 0 0] 400;
+
+pidTd			[0 0 1 0 0 0 0] 0.1;
+
+pidNum			[0 0 0 0 0 0 0] 5;
+
+// ************************************************************************* //
