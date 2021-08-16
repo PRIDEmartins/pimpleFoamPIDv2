@@ -12,10 +12,11 @@ IOdictionary transportProperties
     )
 );
 
+Info<< "Reading field rho\n" << endl;
 dimensionedScalar rho
 (
-    "rho",
-    dimDensity,
+   "rho",
+   dimDensity,
     transportProperties.lookup("rho")
 );
 
@@ -201,6 +202,7 @@ for (int i=1; i < (pidNum.value()); ++i) {
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// Copied from OFv6.0:
 
 #include "createPhi.H"
 
@@ -210,7 +212,7 @@ scalar pRefValue = 0.0;
 setRefCell(p, pimple.dict(), pRefCell, pRefValue);
 mesh.setFluxRequired(p.name());
 
-// Copied from OFv6.0:
+
 singlePhaseTransportModel laminarTransport(U, phi);
 
 autoPtr<incompressible::momentumTransportModel> turbulence

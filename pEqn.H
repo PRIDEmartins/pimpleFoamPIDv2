@@ -1,10 +1,11 @@
 volScalarField rAU(1.0/UEqn.A());
 volVectorField HbyA(constrainHbyA(rAU*UEqn.H(), U, p));
+// (v2.0) Borrowed from OF v6
 surfaceScalarField phiHbyA
 (
     "phiHbyA",
     fvc::flux(HbyA)
-  + MRF.zeroFilter(fvc::interpolate(rAU)*fvc::ddtCorr(U, phi, Uf)) // (v2.0) Borrowed from OF v6
+  + MRF.zeroFilter(fvc::interpolate(rAU)*fvc::ddtCorr(U, phi, Uf)) 
 );
 
 MRF.makeRelative(phiHbyA);

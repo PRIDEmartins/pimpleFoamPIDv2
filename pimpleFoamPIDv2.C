@@ -73,7 +73,6 @@ int main(int argc, char *argv[])
 
     Info<< "\nStarting time loop\n" << endl;
 
-    // (v2.0) Lines 78-94
     while (pimple.run(runTime))
     {
         #include "readDyMControls.H"
